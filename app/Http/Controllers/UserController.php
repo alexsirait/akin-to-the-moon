@@ -64,37 +64,6 @@ class UserController extends Controller
         return view('edit_user', $data);
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     public function update_user(Request $r)
     {
         $id = $r->id;

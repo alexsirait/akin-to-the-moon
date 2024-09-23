@@ -13,17 +13,22 @@
 <table class="table">
     <thead>
       <tr>
-        <th scope="col">Id</th>
-        <th scope="col">Nama</th>
-        <th scope="col">Jenis</th>
+        <th scope="col">id</th>
+        <th scope="col">nama</th>
+        <th scope="col">jenis</th>
+        <th scope="col">Aksi</th>
       </tr>
     </thead>
         <tbody>
-            @foreach ($hewan as $hw)
+            @foreach ($hewan as $us)
                 <tr>
-                    <td>{{ $hw->id }}</td>
-                    <td>{{ $hw->nama }}</td>
-                    <td>{{ $hw->jenis }}</td>
+                    <td>{{ $us->id }}</td>
+                    <td>{{ $us->nama }}</td>
+                    <td>{{ $us->jenis }}</td>
+                    <td>
+                        <a class="btn btn-primary" href="/edithewan?id={{ $us->id }}">Edit</a>
+                        <a class="btn btn-danger" href="/deletehewan?id={{ $us->id }}">Delete</a>
+                    </td>
                   </tr>
             @endforeach
     <a class="btn btn-success" href="/addhewan">add dong</a>
