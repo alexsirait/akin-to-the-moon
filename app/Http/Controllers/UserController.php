@@ -16,6 +16,8 @@ class UserController extends Controller
         ]);
     }
 
+
+
     public function adduser(Request $r)
     {
         return view('adduser');
@@ -43,7 +45,7 @@ class UserController extends Controller
 
         DB::table('tbl_user')->where("id", $id)->delete();
 
-        return redirect('/user');
+        return response()->json("SUCCESS");
     }
 
 
@@ -74,6 +76,42 @@ class UserController extends Controller
         ]);
 
         return redirect('/user');
+    }
+
+    public function showUser(Request $req)
+    {
+        $output = '';
+
+        $data = DB::table('tbl_user')->get();
+
+        $output .= '<table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">Nama</th>
+                            <th scope="col">Hp</th>
+                            <th scope="col">Id</th>
+                            <th scope="col">aksi</th>
+                        </tr>
+                        </thead>
+                        <tbody>';
+
+        if ($data) {
+            foreach ($data as $i => $us) {
+                $output .= "<tr>
+                                <td>".$us->name."</td>
+                                <td>".$us->hp."</td>
+                                <td>".$us->id."</td>
+                                <td>
+                                    <a class='btn btn-primary' href='/edit_user?id=".$us->id.">Edit</a>
+                                    <a class='btn btn-danger deleteButton' href='/deleteuser?id=".$us->id."' data-iduser=".$us->id.">Delete</a>
+                                </td>
+                            </tr>";
+            }
+        }
+
+        $output .= '</tbody></table>';
+
+        return $output;
     }
 }
 
